@@ -13,4 +13,13 @@ jobs:
       - name: Install Tools
         run: |
           sudo apt upgrade
-          sudo apt install build-essential cmake gbd -y
+          sudo apt install build-essential cmake gdb -y
+      - name: Build Code
+        run: |
+          cmake . && \
+          cmake --build . --target all -j 10
+      - name: Uploading Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: Servers_Docker
+          path: ./Servers_Docker
